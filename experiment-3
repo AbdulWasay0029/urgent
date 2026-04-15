@@ -1,0 +1,92 @@
+✅ login.html (SHORT)
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<script>
+function validate() {
+ let u = frm.uname.value;
+ let p = frm.pwd.value;
+
+ if (u !== localStorage.getItem("username") ||
+     p !== localStorage.getItem("password")) {
+  alert("Invalid");
+  return false;
+ }
+ return true;
+}
+</script>
+</head>
+
+<body>
+<h2>Login</h2>
+
+<form name="frm" action="success2.html" onsubmit="return validate()">
+ Username: <input type="text" name="uname" required><br>
+ Password: <input type="password" name="pwd" required><br>
+
+ <input type="submit" value="Login">
+ <a href="register.html">Register</a>
+</form>
+
+</body>
+</html>
+✅ register.html (SHORT)
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+
+<script>
+function validate(){
+ let name = frm.fname.value;
+ let phone = frm.phone.value;
+ let mail = frm.mailid.value;
+ let pwd = frm.pwd.value;
+
+ if(!/^[A-Za-z]+$/.test(name)){
+  alert("Invalid name"); return false;
+ }
+
+ if(!/^\d{10}$/.test(phone)){
+  alert("Invalid phone"); return false;
+ }
+
+ if(!/^[^ ]+@[^ ]+\.[^ ]+$/.test(mail)){
+  alert("Invalid email"); return false;
+ }
+
+ if(pwd.length > 8){
+  alert("Max 8 chars"); return false;
+ }
+
+ localStorage.setItem("username", frm.uname.value);
+ localStorage.setItem("password", frm.pwd.value);
+
+ return true;
+}
+</script>
+
+</head>
+
+<body>
+<h2>Register</h2>
+
+<form name="frm" action="success.html" onsubmit="return validate()">
+
+ Name: <input name="fname" required><br>
+ Phone: <input name="phone" required><br>
+ Email: <input name="mailid" required><br>
+ Username: <input name="uname" required><br>
+ Password: <input name="pwd" required><br>
+
+ <input type="submit" value="Register">
+ <a href="login.html">Login</a>
+
+</form>
+
+</body>
+</html>
+✅ success pages (UNCHANGED)
+<h2>Registration Successful!!</h2>
+<h2>Login Successful!!</h2>
